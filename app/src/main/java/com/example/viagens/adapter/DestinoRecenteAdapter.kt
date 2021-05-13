@@ -9,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.viagens.R
 import com.example.viagens.model.DestinosRecentes
 
-class DestinoRecenteAdapter(
-    val listRecentes: List<DestinosRecentes>,
-    val context: Context): RecyclerView.Adapter<DestinoRecenteAdapter.Holder>(){
+class DestinoRecenteAdapter( val context: Context): RecyclerView.Adapter<DestinoRecenteAdapter.Holder>(){
 
+    var listRecentes = emptyList<DestinosRecentes>()
 
+    fun updateListaRecente(lista: List<DestinosRecentes>){
+
+        listRecentes = lista
+        notifyDataSetChanged()
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater
@@ -31,9 +36,9 @@ class DestinoRecenteAdapter(
 
         val destinosRecentes = listRecentes[position]
 
-        holder.tvNomeDestino.text = destinosRecentes.nomeDestino
-        holder.tvLocalidade.text = destinosRecentes.localidade
-        holder.tvValor.text = destinosRecentes.descValor
+        holder.tvNomeDestino.text = destinosRecentes.nome
+        holder.tvLocalidade.text = destinosRecentes.nomeCidade
+        holder.tvValor.text = destinosRecentes.valor.toString()
     }
 
 

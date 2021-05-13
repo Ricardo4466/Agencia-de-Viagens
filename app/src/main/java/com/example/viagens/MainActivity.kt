@@ -2,16 +2,24 @@ package com.example.viagens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Adapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viagens.adapter.DestinoRecenteAdapter
+import com.example.viagens.api.DestinosRecentesCall
+import com.example.viagens.api.RetrofitApi
 import com.example.viagens.model.DestinosRecentes
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var rvDestinosRecentes: RecyclerView
-
+    lateinit var adapterDestinosRecentes: DestinoRecenteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,22 +33,37 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.HORIZONTAL,
                 false)
 
-        val adapterDestinosRecentes = DestinoRecenteAdapter(setListaDestinosRecentes(), this)
+        adapterDestinosRecentes = DestinoRecenteAdapter(this)
 
         rvDestinosRecentes.adapter = adapterDestinosRecentes
+
+        carregarListaDestinosRecentes()
     }
 
 
-    private fun setListaDestinosRecentes() : List<DestinosRecentes>{
+    private fun carregarListaDestinosRecentes(){
 
-        val lista = listOf(
-            DestinosRecentes("Porto de Galinhas", "Pernambuco", "R$ 1.500,00"),
-            DestinosRecentes("Cristo Redentor", "Rio de Janeiro", "R$ 500,00"),
-            DestinosRecentes("Praia das Joaquinas", "Santa Catarina", "R$ 900,00"),
-            DestinosRecentes("Gramado", "Rio G. do Sul", "R$ 3.500,00"),
-            DestinosRecentes("Campos do Jordão", "São Paulo", "R$ 500,00"),
-            DestinosRecentes("Porto Seguro", "Bahia", "R$ 750,00"))
+        var destinosRecentes: List<DestinosRecentes> = listOf<DestinosRecentes>()
+        val retrofit = RetrofitApi.getRetrofit()
+        val destinosRecentesCall = retrofit.create(DestinosRecentesCall::class.java)
 
-        return lista
+        val call = destinosRecentesCall.getDestinosRecentes()
+
+        call.enqueue(object : Callback<List<DestinosRecentes>> {
+            override fun onFailure(call: Call<List<DestinosRecentes>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Ops Acho que ocorreu um problema.", Toast.LENGTH_SHORT).show()
+                Log.e("ERRO_CONEXAO", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<List<DestinosRecentes>>,
+                response: Response<List<DestinosRecentes>>
+            ) {
+                destinosRecentes = response.body()!! // Double BANG!!
+                adapterDestinosRecentes.updateListaRecente(destinosRecentes)
+            }
+
+        })
+
     }
 }

@@ -1,7 +1,11 @@
 package com.example.viagens.model
 
 data class DestinosRecentes(
-    var nomeDestino: String,
-    var localidade: String,
-    var descValor: String
+    var  id: Long = 0,
+    var nome: String = "",
+    var valor: Double = 0.0,
+    var nomeCidade: String= "",
+    var siglaEstadoSP: String = "",
+    var urlFoto: String = ""
+
 )
