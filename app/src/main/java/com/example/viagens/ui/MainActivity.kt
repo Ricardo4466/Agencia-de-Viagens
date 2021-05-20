@@ -1,12 +1,12 @@
-package com.example.viagens
+package com.example.viagens.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Adapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.viagens.R
 import com.example.viagens.adapter.DestinoRecenteAdapter
 import com.example.viagens.api.DestinosRecentesCall
 import com.example.viagens.api.RetrofitApi
@@ -14,7 +14,6 @@ import com.example.viagens.model.DestinosRecentes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
