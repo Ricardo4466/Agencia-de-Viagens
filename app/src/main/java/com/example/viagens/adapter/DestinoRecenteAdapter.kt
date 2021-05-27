@@ -52,7 +52,7 @@ class DestinoRecenteAdapter( val context: Context): RecyclerView.Adapter<Destino
 
         holder.cardDestino.setOnClickListener {
             val intent = Intent(context, DetalheDestinoActivity::class.java)
-            intent.putExtra("destino", destinosRecentes.nome)
+            intent.putExtra("destino", destinosRecentes)
             context.startActivity(intent)
 
         }

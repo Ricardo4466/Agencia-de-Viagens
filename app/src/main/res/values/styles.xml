@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="expandedTitle" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">28sp</item>
+<!--        <item name="android:textColorPrimary">@android:color/white</item>-->
+    </style>
+    <style name="collapseTitle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="subtitles" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:drawableTint">@android:color/black</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
 </resources>

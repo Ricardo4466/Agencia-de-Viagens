@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:title="Nome do destino"
+            app:expandedTitleTextAppearance="@style/expandedTitle"
+            app:collapsedTitleTextAppearance="@style/collapseTitle"
             android:theme="@style/AppTheme"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="@color/colorPrimary">
@@ -35,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                android:background="@drawable/collapse_header_background"/>
+                android:background="@drawable/collapse_header_background" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -106,21 +108,47 @@
                     android:text="Galeria de imagens"
                     app:layout_constraintTop_toBottomOf="@id/tv_valor"
                     app:layout_constraintStart_toStartOf="@id/tv_a_partir_de"
-                    android:layout_marginTop="24dp"
-                   android:drawableTint="@color/colorPrimary"
-                    android:textStyle="normal"
-                    android:drawablePadding="8dp"
                     android:drawableStart="@drawable/ic_baseline_photo_library_24"
+                    style="@style/subtitles"/>
+
+                <TextView
+                    android:id="@+id/tv_descricao"
+                    style="@style/subtitles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_info_24"
+
+                    android:text="Descrição"
+                    app:layout_constraintStart_toStartOf="@+id/tv_galeria_imagens"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_galeria_de_fotos_destino" />
+
+                <TextView
+                    android:id="@+id/tv_texto_descricao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris. Per aumento de cachacis, eu reclamis. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. In elementis mé pra quem é amistosis quis leo."
+                    app:layout_constraintTop_toBottomOf="@id/tv_descricao"
+                    app:layout_constraintStart_toStartOf="@id/tv_descricao"
                     />
+
+                <TextView
+                    android:id="@+id/tv_comentarios"
+                    style="@style/subtitles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_comments"
+
+                    android:text="Comentarios"
+                    app:layout_constraintStart_toStartOf="@+id/tv_galeria_imagens"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_texto_descricao" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tv_galeria_de_fotos_destino"
                     android:layout_width="match_parent"
-                    android:layout_height="800dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/tv_galeria_imagens"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="8dp"
-                    >
+                    android:layout_marginTop="8dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
