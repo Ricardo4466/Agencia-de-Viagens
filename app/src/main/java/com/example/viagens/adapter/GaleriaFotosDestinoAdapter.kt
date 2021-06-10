@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.viagens.R
 import com.example.viagens.model.Foto
+import com.example.viagens.ui.DialogImgDetail
 
-class GaleriaFotosDestinoAdapter (var context: Context): RecyclerView.Adapter<GaleriaFotosDestinoAdapter.ViewHolder>(){
+class GaleriaFotosDestinoAdapter(var context: Context) :
+    RecyclerView.Adapter<GaleriaFotosDestinoAdapter.ViewHolder>() {
 
     private var listaDeFotos: List<Foto> = emptyList()
 
-    fun updateListaDeFotos(lista: List<Foto>){
+    fun updateListaDeFotos(lista: List<Foto>) {
         listaDeFotos = lista
 
         notifyDataSetChanged()
@@ -35,16 +38,19 @@ class GaleriaFotosDestinoAdapter (var context: Context): RecyclerView.Adapter<Ga
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val foto =  listaDeFotos[position]
+        val foto = listaDeFotos[position]
         Glide.with(context).load(foto.urlFoto).into(holder.imageFoto)
 
-            holder.imageFoto.setOnClickListener{
-                Toast.makeText(context, "${foto.id}", Toast.LENGTH_SHORT).show()
-            }
+        holder.imageFoto.setOnClickListener {
+            val dialog = DialogImgDetail()
+            dialog.updateImageUrl(foto.urlFoto)
+            dialog.show((context as AppCompatActivity).supportFragmentManager, "Qualquer coisa")
+
+        }
     }
 
     //    inner Class
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageFoto = view.findViewById<ImageView>(R.id.image_foto)
     }
 }

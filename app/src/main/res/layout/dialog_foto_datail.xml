@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/colorAccent"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/image_foto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/porto_de_galinhas"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/imgbuttom_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_button_background"
+            android:padding="16dp"/>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

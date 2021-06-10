@@ -15,6 +15,7 @@ import com.example.viagens.api.FotoCall
 import com.example.viagens.api.RetrofitApi
 import com.example.viagens.model.DestinosRecentes
 import com.example.viagens.model.Foto
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.android.synthetic.main.activity_detalhe_destino.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +31,8 @@ class DetalheDestinoActivity : AppCompatActivity() {
     lateinit var rvGaleriaFotosDestino: RecyclerView
     lateinit var galeriaFotosDestinoAdapter: GaleriaFotosDestinoAdapter
     lateinit var destinoRecente: DestinosRecentes
+    lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
+    lateinit var tvApartirDe: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +73,6 @@ class DetalheDestinoActivity : AppCompatActivity() {
             }
 
         })
-
     }
 
     private fun carregarDados() {
@@ -78,13 +80,23 @@ class DetalheDestinoActivity : AppCompatActivity() {
         tvLocal = findViewById(R.id.tv_local)
         tvValor = findViewById(R.id.tv_valor)
         tvTextoDescricao = findViewById(R.id.tv_texto_descricao)
-
+        collapsingToolbarLayout = findViewById(R.id.colapsing_toolBar)
+        tvApartirDe = findViewById(R.id.tv_a_partir_de)
          destinoRecente =
             intent.getSerializableExtra("destino") as DestinosRecentes
 
-        tvLocal.text = destinoRecente.nome
-        tvValor.text = destinoRecente.valor.toString()
+        tvLocal.text =" ${destinoRecente.nomeCidade} - ${destinoRecente.siglaEstado}"
+
+        if(destinoRecente.valor == 0.0){
+            tvValor.text = "GRATÍS"
+            tvApartirDe.text = ""
+        }
+        else {
+            tvValor.text = "R$ ${String.format("%.2f", destinoRecente.valor)}"
+        }
         tvTextoDescricao.text = destinoRecente.descricao
+        collapsingToolbarLayout.title = destinoRecente.nome
+
 
         Glide.with(this).load(destinoRecente.urlFoto).into(ivFotoDestino)
     }
