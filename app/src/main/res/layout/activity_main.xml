@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_header"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,7 +27,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/cardview_light_background"
             android:textColorLink="@color/colorAccent"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:fontFamily="@font/candal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,12 +39,13 @@
             android:text="Próxima Viagem"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/cardview_light_background"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:fontFamily="@font/candal"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -52,11 +53,12 @@
             app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.71"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="@+id/textView">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/iv_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/perfil" />
@@ -67,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/search"
@@ -83,6 +85,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_sign_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Sair"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/tv_display_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/tv_sign_out"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/tv_sign_out"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

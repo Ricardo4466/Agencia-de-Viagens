@@ -1,5 +1,6 @@
 package com.example.viagens.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -70,15 +71,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == RC_SIGN_IN){
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            val usuario = task.getResult(ApiException::class.java)
-            if (usuario != null){
-                Log.d("xpto", usuario.displayName.toString())
-                Log.d("xpto", usuario.email.toString())
-                Log.d("xpto", usuario.photoUrl.toString())
-
+        if (requestCode == RC_SIGN_IN)  {
+            val task:Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val user = task.getResult(ApiException::class.java)
+            if (user != null) {
+                val dadosUsuario = getSharedPreferences("dados_usuario", Context.MODE_PRIVATE)
+                val editor = dadosUsuario.edit()
+                editor.putString("display_name", user.displayName)
+                editor.putString("family_name", user.familyName)
+                editor.putString("email", user.email)
+                editor.putString("photo_url", user.photoUrl.toString())
+                editor.putString("id", user.id)
+                editor.apply()
+                updateUI()
             }
         }
     }
